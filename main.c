@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#define ROWS 5
+#define COLUMNS 10
 void viewMoviesAndShowtimes();
 void viewSeatMap();
 void bookTickets();
@@ -7,6 +9,21 @@ void cancelBookings();
 void searchBookings();
 void revenueReports();
 void mainMenu();
+
+char movies[3][30]={
+    "Avengers Endgame",
+    "Avatar 2",
+    "John Wick 4"
+
+};
+
+char showtimes[2][30]={
+    "10:00 AM",
+    "7:00 PM"
+
+};
+
+int seats[6][ROWS][COLUMNS];
 
 int main()
 {
