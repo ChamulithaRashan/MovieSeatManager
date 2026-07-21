@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #define ROWS 5
 #define COLUMNS 10
+#define MOVIES 3
+#define SHOWTIMES 2
 void viewMoviesAndShowtimes();
 void viewSeatMap();
 void bookTickets();
@@ -10,14 +12,16 @@ void searchBookings();
 void revenueReports();
 void mainMenu();
 
-char movies[3][30]={
+char movies[3][30]=
+{
     "Avengers Endgame",
     "Avatar 2",
     "John Wick 4"
 
 };
 
-char showtimes[2][30]={
+char showtimes[2][30]=
+{
     "10:00 AM",
     "7:00 PM"
 
@@ -77,7 +81,8 @@ void mainMenu()
             revenueReports();
             option=0;
             break;
-        case 7 :printf("Thank You !");
+        case 7 :
+            printf("Thank You !");
             return ;
         default:
             printf("\tInvalid Input\n\n");
@@ -88,7 +93,48 @@ void mainMenu()
 
 void viewMoviesAndShowtimes()
 {
+    system("cls");
+    char choice;
+    printf("============================================\n");
+    printf("             MOVIE SEAT MANAGER              \n");
+    printf("============================================\n");
+    printf("             VIEW MOVIES & SHOWTIMES          \n");
+    printf("============================================\n\n");
 
+    for(int i=0;i<MOVIES;i++){
+        printf(" %d.%s\n",i+1,movies[i]);
+        for(int j=0;j<SHOWTIMES;j++){
+            printf("\t%d.%s\n",j+1,showtimes[j]);
+        }
+        printf("\n");
+
+    }
+
+    printf("============================================\n");
+
+    while(1)
+    {
+        printf("Back to main menu (Y/N): ");
+        scanf(" %c", &choice);
+
+        if (choice=='Y' || choice=='y')
+        {
+            system("cls");
+            mainMenu();
+        }
+        else if (choice=='N' ||choice== 'n')
+        {
+            system("cls");
+            printf("=========================================\n");
+            printf("         GOOD BYE! HAVE A NICE DAY       \n");
+            printf("=========================================\n");
+            exit(0);
+        }
+        else
+        {
+            printf("\n\tInvalid choice! Please enter Y or N.\n\n");
+        }
+    }
 }
 
 void viewSeatMap()
