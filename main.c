@@ -9,6 +9,8 @@ void cancelBookings();
 void searchBookings();
 void revenueReports();
 void mainMenu();
+void searchbyname();
+void searchbynumber();
 
 char movies[3][30]={
     "Avengers Endgame",
@@ -105,7 +107,45 @@ void cancelBookings()
 
 void searchBookings()
 {
+
+ system("cls");
+    int choi;
+    char name;
+    printf("=====================================================================\n");
+    printf("                          SEARCH BOOKING                             \n");
+    printf("=====================================================================\n\n");
+    printf("1.Search by Customer Name\n\n");
+    printf("2.Search by Seat Number\n\n");
+    while(choi){
+    printf("Enter Choice (1,2):");
+    scanf("%d",&choi);
+
+    if (choi==1)
+    {  system("cls");
+       printf("----------Search By Customer Name----------\n\n");
+       printf("Enter customer Name:");
+       scanf("%s",name);
+       choi=0;
+       printf("---------------------------------------------------------");
+       searchbyname();
+       printf("---------------------------------------------------------");
+    }
+    else if (choi==2)
+    {   system("cls");
+        printf("--------Search By Seat Number-----------\n\n");
+        searchbynumber();
+        choi=0;
+    }
+    else {
+        printf("\n      Invalid Input\n\n");
+        choi=1;
+    }
+    }
+
 }
+void searchbyname(){}
+void searchbynumber(){}
+
 
 void revenueReports()
 {
