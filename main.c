@@ -162,7 +162,7 @@ void searchBookings()
     printf("=====================================================================\n\n");
     printf("1.Search by Customer Name\n\n");
     printf("2.Search by Seat Number\n\n");
-    while(choi){
+    while(1){
     printf("Enter Choice (1,2):");
     scanf("%d",&choi);
 
@@ -171,7 +171,7 @@ void searchBookings()
        printf("----------Search By Customer Name----------\n\n");
        printf("Enter customer Name:");
        scanf("%s",name);
-       choi=0;
+       break;
        printf("---------------------------------------------------------");
        searchbyname();
        printf("---------------------------------------------------------");
@@ -180,11 +180,11 @@ void searchBookings()
     {   system("cls");
         printf("--------Search By Seat Number-----------\n\n");
         searchbynumber();
-        choi=0;
+        break;
     }
     else {
         printf("\n      Invalid Input\n\n");
-        choi=1;
+        choi=0;
     }
     }
 
