@@ -13,6 +13,7 @@ void revenueReports();
 void mainMenu();
 void searchbyname();
 void searchbynumber();
+void movieList();
 
 char movies[3][30]=
 {
@@ -103,14 +104,7 @@ void viewMoviesAndShowtimes()
     printf("             VIEW MOVIES & SHOWTIMES          \n");
     printf("============================================\n\n");
 
-    for(int i=0;i<MOVIES;i++){
-        printf(" %d.%s\n",i+1,movies[i]);
-        for(int j=0;j<SHOWTIMES;j++){
-            printf("\t%d.%s\n",j+1,showtimes[j]);
-        }
-        printf("\n");
-
-    }
+    movieList();
 
     printf("============================================\n");
 
@@ -154,7 +148,7 @@ void cancelBookings()
 void searchBookings()
 {
 
- system("cls");
+    system("cls");
     int choi;
     char name;
     printf("=====================================================================\n");
@@ -162,39 +156,92 @@ void searchBookings()
     printf("=====================================================================\n\n");
     printf("1.Search by Customer Name\n\n");
     printf("2.Search by Seat Number\n\n");
-    while(1){
-    printf("Enter Choice (1,2):");
-    scanf("%d",&choi);
+    while(1)
+    {
+        printf("Enter Choice (1,2):");
+        scanf("%d",&choi);
 
-    if (choi==1)
-    {  system("cls");
-       printf("----------Search By Customer Name----------\n\n");
-       printf("Enter customer Name:");
-       scanf("%s",name);
-       break;
-       printf("---------------------------------------------------------");
-       searchbyname();
-       printf("---------------------------------------------------------");
-    }
-    else if (choi==2)
-    {   system("cls");
-        printf("--------Search By Seat Number-----------\n\n");
-        searchbynumber();
-        break;
-    }
-    else {
-        printf("\n      Invalid Input\n\n");
-        choi=0;
-    }
+        if (choi==1)
+        {
+            system("cls");
+            printf("----------Search By Customer Name----------\n\n");
+            printf("Enter customer Name:");
+            scanf("%s",name);
+            break;
+            printf("---------------------------------------------------------");
+            searchbyname();
+            printf("---------------------------------------------------------");
+        }
+        else if (choi==2)
+        {
+            system("cls");
+            printf("--------Search By Seat Number-----------\n\n");
+            searchbynumber();
+            break;
+        }
+        else
+        {
+            printf("\n      Invalid Input\n\n");
+            choi=0;
+        }
     }
 
 }
-void searchbyname(){}
-void searchbynumber(){}
+void searchbyname() {}
+void searchbynumber() {}
 
 
 void revenueReports()
 {
+    system("cls");
+    char choice;
+    printf("======================================================================================\n");
+    printf("%55s\n","CINEMA REVENUE REPORT");
+    printf("======================================================================================\n");
+    printf("%-20s %-20s %-17s %-20s\n","Movie Title","Show Time","Tickets Sold","Total Revenue(LKR)");
+    printf("--------------------------------------------------------------------------------------\n");
+    for(int i=0; i<MOVIES; i++)
+    {
+        for(int j=0; j<SHOWTIMES; j++)
+        {
+            printf("%-20s %-20s %-17s %-20s\n",movies[i],showtimes[j]);
+        }
+
+        printf("--------------------------------------------------------------------------------------\n");
+    }
+    printf("Back to main menu (Y/N): ");
+    scanf(" %c", &choice);
+
+    if (choice=='Y' || choice=='y')
+    {
+        system("cls");
+        mainMenu();
+    }
+    else if (choice=='N' ||choice== 'n')
+    {
+        system("cls");
+        printf("=========================================\n");
+        printf("         GOOD BYE! HAVE A NICE DAY       \n");
+        printf("=========================================\n");
+        exit(0);
+    }
+    else
+    {
+        printf("\n\tInvalid choice! Please enter Y or N.\n\n");
+    }
+}
+void movieList()
+{
+    for(int i=0; i<MOVIES; i++)
+    {
+        printf(" %d.%s\n",i+1,movies[i]);
+        for(int j=0; j<SHOWTIMES; j++)
+        {
+            printf("\t%d.%s\n",j+1,showtimes[j]);
+        }
+        printf("\n");
+
+    }
 }
 
 
