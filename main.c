@@ -217,6 +217,39 @@ void bookTickets()
 
 void cancelBookings()
 {
+    system("cls");
+    char row_[20];
+    int seat_num;
+     char choice;
+
+    printf("=====================================================================\n");
+    printf("%37s\n","CANCEL BOOKING");
+    printf("=====================================================================\n");
+    printf("Enter Row (A-E): ");
+    scanf("%s",row_);
+    printf("Enter Seat Number (1-10): ");
+    scanf("%d",&seat_num);
+
+     printf("Back to main menu (Y/N): ");
+     scanf(" %c", &choice);
+
+    if (choice=='Y' || choice=='y')
+    {
+        system("cls");
+        mainMenu();
+    }
+    else if (choice=='N' ||choice== 'n')
+    {
+        system("cls");
+        printf("=========================================\n");
+        printf("         GOOD BYE! HAVE A NICE DAY       \n");
+        printf("=========================================\n");
+        exit(0);
+    }
+    else
+    {
+        printf("\n\tInvalid choice! Please enter Y or N.\n\n");
+    }
 }
 
 void searchBookings()
