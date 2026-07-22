@@ -135,6 +135,24 @@ void viewMoviesAndShowtimes()
 
 void viewSeatMap()
 {
+    system("cls");
+    printf("========================================================\n");
+    printf("                  VIEW SEAT MAP                         \n");
+    printf("========================================================\n");
+    int option1;
+    int option2;
+    printf(" Movie : ");
+    scanf("%d",&option1);
+    printf(" Showtime : ");
+    scanf("%d",&option2);
+    printf("\n (.) = Available\n");
+    printf(" (X) = Booked\n\n");
+    printf(" Rows A-B : Regular (Rs.500)\n");
+    printf(" Rows C-D : Premium (Rs.750)\n");
+    printf(" Row  E   : VIP (Rs.1000)\n");
+
+
+
 }
 
 void bookTickets()
