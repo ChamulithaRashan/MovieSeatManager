@@ -157,6 +157,62 @@ void viewSeatMap()
 
 void bookTickets()
 {
+    system("cls");
+
+
+    printf("=====================================================================\n");
+    printf("                          Booking Ticket                             \n");
+    printf("=====================================================================\n\n");
+    movieList();
+ int movie;
+ printf("Select Movie:");
+ scanf("%d",&movie);
+ printf("\n");
+
+ int showtimes;
+ printf("Select Show Time:");
+ scanf("%d",&showtimes);
+ printf("\n");
+
+ char customer_name[50];
+ printf("Enter Customer Name:");
+     scanf("%s",&customer_name);
+      printf("\n");
+
+      int seat;
+      printf("Select Seat:");
+      scanf("%d",&seat);
+       printf("\n");
+
+       printf("Ticket Type\n");
+        printf("\n");
+
+       printf("1.Regular \n");
+       printf("2.Student (10%% Discount)\n");
+       printf("3.Senior Citizen (20%%Discount)\n");
+
+ printf("\n");
+
+       int choice;
+       printf("Enter Choice :");
+       scanf("%d",&choice);
+ printf("\n");
+
+       int number_of_ticket;
+       printf("Number Of Ticket :");
+       scanf("%d",&number_of_ticket);
+ printf("\n");
+
+       printf("------------------------------------------------------\n");
+
+       printf("Ticket Price  : Rs.750.00\n");
+       printf("Discount      : Rs.75.00\n");
+       printf("Total price   : Rs.675.00\n");
+
+       int booking;
+       printf ("Confirm Booking (Y/N)");
+       scanf ("%d",&booking);
+
 }
 
 void cancelBookings()
