@@ -4,6 +4,9 @@
 #define COLUMNS 10
 #define MOVIES 3
 #define SHOWTIMES 2
+#include <ctype.h>
+#include <string.h>
+
 void viewMoviesAndShowtimes();
 void viewSeatMap();
 void bookTickets();
@@ -30,7 +33,7 @@ char showtimes[2][30]=
 
 };
 
-int seats[6][ROWS][COLUMNS]={0};
+int seats[6][ROWS][COLUMNS]= {0};
 char customerName[6][ROWS][COLUMNS][30];
 float ticketprice[6][ROWS][COLUMNS];
 
@@ -145,31 +148,36 @@ void viewSeatMap()
     int option1;
     int option2;
     int screen;
-    screen=(option1-1)*2+(option2-1);
     printf(" Movie : ");
     scanf("%d",&option1);
     printf(" Showtime : ");
     scanf("%d",&option2);
+    screen=(option1-1)*2+(option2-1);
     printf("\n (.) = Available\n");
-    printf(" (X) = Booked\n\n");
+    printf(" (*) = Booked\n\n");
     printf(" Rows A-B : Regular (Rs.500)\n");
     printf(" Rows C-D : Premium (Rs.750)\n");
     printf(" Row  E   : VIP (Rs.1000)\n");
     printf("\n\t");
 
-    for(int i=1;i<=10;i++){
+    for(int i=1; i<=10; i++)
+    {
         printf("%2d ",i);
     }
     printf("\n");
 
-    for(int i=0;i<5;i++){
+    for(int i=0; i<5; i++)
+    {
         printf("%c  ",'A'+i);
         printf("\t ");
-        for(int j=0;j<10;j++){
-            if(seats[screen][i][j]==0){
+        for(int j=0; j<10; j++)
+        {
+            if(seats[screen][i][j]==0)
+            {
                 printf(".  ");
             }
-            else{
+            else
+            {
                 printf("*  ");
             }
         }
@@ -189,54 +197,91 @@ void bookTickets()
     printf("                          Booking Ticket                             \n");
     printf("=====================================================================\n\n");
     movieList();
- int movie;
- printf("Select Movie:");
- scanf("%d",&movie);
- printf("\n");
+    int movie;
+    printf("Select Movie:");
+    scanf("%d",&movie);
+    printf("\n");
 
- int showtimes;
- printf("Select Show Time:");
- scanf("%d",&showtimes);
- printf("\n");
+    int showtimes;
+    char rowChar;
+    int columnChar;
+    printf("Select Show Time:");
+    scanf("%d",&showtimes);
+    printf("\n");
+    int screen=(movie-1)*2+(showtimes-1);
+    char customer_name[50];
+    printf("Enter Customer Name:");
+    scanf("%s",&customer_name);
+    printf("\n");
+    printf("Select Row:");
+    scanf(" %c",&rowChar);
+    rowChar = toupper(rowChar);
+    printf("\n");
+    printf("Enter Column :");
+    scanf("%d",&columnChar);
 
- char customer_name[50];
- printf("Enter Customer Name:");
-     scanf("%s",&customer_name);
-      printf("\n");
+    printf("Ticket Type\n");
+    printf("\n");
 
-      int seat;
-      printf("Select Seat:");
-      scanf("%d",&seat);
-       printf("\n");
+    printf("1.Regular \n");
+    printf("2.Student (10%% Discount)\n");
+    printf("3.Senior Citizen (20%%Discount)\n");
 
-       printf("Ticket Type\n");
-        printf("\n");
+    printf("\n");
 
-       printf("1.Regular \n");
-       printf("2.Student (10%% Discount)\n");
-       printf("3.Senior Citizen (20%%Discount)\n");
+    int choice;
+    printf("Enter Choice :");
+    scanf("%d",&choice);
+    printf("\n");
 
- printf("\n");
+    int number_of_ticket;
+    printf("Number Of Ticket :");
+    scanf("%d",&number_of_ticket);
+    printf("\n");
 
-       int choice;
-       printf("Enter Choice :");
-       scanf("%d",&choice);
- printf("\n");
+    printf("------------------------------------------------------\n");
 
-       int number_of_ticket;
-       printf("Number Of Ticket :");
-       scanf("%d",&number_of_ticket);
- printf("\n");
+    printf("Ticket Price  : Rs.750.00\n");
+    printf("Discount      : Rs.75.00\n");
+    printf("Total price   : Rs.675.00\n");
 
-       printf("------------------------------------------------------\n");
+    int row=rowChar-'A';
+    int column=columnChar-1;
+    if(seats[screen][row][column]==1){
+        printf("Seat Already Booked\n");
+    }else{
+        strcpy(customerName[screen][row][column],customer_name);
 
-       printf("Ticket Price  : Rs.750.00\n");
-       printf("Discount      : Rs.75.00\n");
-       printf("Total price   : Rs.675.00\n");
+        seats[screen][row][column]=1;
 
-       int booking;
-       printf ("Confirm Booking (Y/N)");
-       scanf ("%d",&booking);
+        ticketprice[screen][row][column]=choice;
+
+        printf("Succesfuly Booked \n");
+
+    }
+   // printf ("Confirm Booking (Y/N)");
+    char choice3;
+    printf("Back to main menu (Y/N): ");
+    scanf(" %c", &choice3);
+    if (choice3=='Y' || choice3=='y')
+    {
+        //system("cls");
+        mainMenu();
+    }
+    else if (choice3=='N' ||choice3== 'n')
+    {
+        system("cls");
+        printf("=========================================\n");
+        printf("         GOOD BYE! HAVE A NICE DAY       \n");
+        printf("=========================================\n");
+        exit(0);
+    }
+    else
+    {
+        printf("\n\tInvalid choice! Please enter Y or N.\n\n");
+    }
+
+
 
 }
 
@@ -245,7 +290,7 @@ void cancelBookings()
     system("cls");
     char row_[20];
     int seat_num;
-     char choice;
+    char choice;
 
     printf("=====================================================================\n");
     printf("%37s\n","CANCEL BOOKING");
@@ -255,8 +300,8 @@ void cancelBookings()
     printf("Enter Seat Number (1-10): ");
     scanf("%d",&seat_num);
 
-     printf("Back to main menu (Y/N): ");
-     scanf(" %c", &choice);
+    printf("Back to main menu (Y/N): ");
+    scanf(" %c", &choice);
 
     if (choice=='Y' || choice=='y')
     {
