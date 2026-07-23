@@ -30,7 +30,9 @@ char showtimes[2][30]=
 
 };
 
-int seats[6][ROWS][COLUMNS];
+int seats[6][ROWS][COLUMNS]={0};
+char customerName[6][ROWS][COLUMNS][30];
+float ticketprice[6][ROWS][COLUMNS];
 
 int main()
 {
@@ -47,7 +49,7 @@ void mainMenu()
     printf("--------------------------------------------------\n\n");
     printf(" 1. View Movies & Showtimes\n");
     printf(" 2. View Seat Map\n");
-    printf(" 3. Book Tickets\n");
+    printf(" 3. Booking Tickets\n");
     printf(" 4. Cancel Booking\n");
     printf(" 5. Search Booking\n");
     printf(" 6. Revenue Report\n");
@@ -139,8 +141,11 @@ void viewSeatMap()
     printf("========================================================\n");
     printf("                  VIEW SEAT MAP                         \n");
     printf("========================================================\n");
+    movieList();
     int option1;
     int option2;
+    int screen;
+    screen=(option1-1)*2+(option2-1);
     printf(" Movie : ");
     scanf("%d",&option1);
     printf(" Showtime : ");
@@ -150,6 +155,26 @@ void viewSeatMap()
     printf(" Rows A-B : Regular (Rs.500)\n");
     printf(" Rows C-D : Premium (Rs.750)\n");
     printf(" Row  E   : VIP (Rs.1000)\n");
+    printf("\n\t");
+
+    for(int i=1;i<=10;i++){
+        printf("%2d ",i);
+    }
+    printf("\n");
+
+    for(int i=0;i<5;i++){
+        printf("%c  ",'A'+i);
+        printf("\t ");
+        for(int j=0;j<10;j++){
+            if(seats[screen][i][j]==0){
+                printf(".  ");
+            }
+            else{
+                printf("*  ");
+            }
+        }
+        printf("\n");
+    }
 
 
 
@@ -257,7 +282,7 @@ void searchBookings()
 
     system("cls");
     int choi;
-    char name;
+    char name[30];
     printf("=====================================================================\n");
     printf("                          SEARCH BOOKING                             \n");
     printf("=====================================================================\n\n");
