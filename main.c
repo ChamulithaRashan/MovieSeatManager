@@ -148,13 +148,27 @@ void viewSeatMap()
     int option1;
     int option2;
     int screen;
-    printf(" Movie : ");
-    scanf("%d",&option1);
-    printf(" Showtime : ");
-    scanf("%d",&option2);
+    while (1){
+      printf(" Movie(1,2 or 3) : ");
+      if(scanf("%d",&option1) == 1 && (option1 >= 1 && option1 <= 3)) {
+        break;
+      } else {
+          printf("\n\tInvalid movie selection !\n\n");
+          while (getchar() !='\n');
+      }
+    }
+    while (1){
+      printf(" Showtime(1 or 2) : ");
+      if(scanf("%d",&option2) == 1 && (option2 == 1 || option2 == 2)) {
+        break;
+      } else {
+          printf("\n\tInvalid showtime selection !\n\n");
+          while (getchar() !='\n');
+      }
+    }
     screen=(option1-1)*2+(option2-1);
     printf("\n (.) = Available\n");
-    printf(" (*) = Booked\n\n");
+    printf(" (X) = Booked\n\n");
     printf(" Rows A-B : Regular (Rs.500)\n");
     printf(" Rows C-D : Premium (Rs.750)\n");
     printf(" Row  E   : VIP (Rs.1000)\n");
@@ -178,14 +192,11 @@ void viewSeatMap()
             }
             else
             {
-                printf("*  ");
+                printf("X  ");
             }
         }
         printf("\n");
     }
-
-
-
 }
 
 void bookTickets()
