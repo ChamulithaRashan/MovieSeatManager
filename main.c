@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 #define ROWS 5
@@ -686,8 +687,30 @@ void revenueReports()
 
             for (int r =0; r<ROWS; r++)
             {
-                for (int c=0; c<COLUMNS; c++)
-                {
+                system("cls");
+                printf("----------Search By Customer Name----------\n\n");
+               /* printf("Enter customer Name:");
+                scanf("%s",name);*/
+                searchbyname();
+                break;
+                printf("---------------------------------------------------------");
+
+                printf("---------------------------------------------------------");
+            }
+            else if (choi==2)
+            {
+                system("cls");
+                printf("--------Search By Seat Number-----------\n\n");
+                searchbynumber();
+                break;
+            }
+            else
+            {
+                printf("\n      Invalid Input\n\n");
+                choi=0;
+            }
+        }
+    }
 
                     if (seats[screen][r][c]==1)
                     {
