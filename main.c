@@ -143,6 +143,7 @@ void viewMoviesAndShowtimes()
 void viewSeatMap()
 {
     system("cls");
+    char choice;
     printf("========================================================\n");
     printf("                  VIEW SEAT MAP                         \n");
     printf("========================================================\n");
@@ -152,7 +153,7 @@ void viewSeatMap()
     int screen;
     while (1)
     {
-        printf(" Movie(1,2 or 3) : ");
+        printf(" Movie(1/2/3) : ");
         if(scanf("%d",&option1) == 1 && (option1 >= 1 && option1 <= 3))
         {
             break;
@@ -165,7 +166,7 @@ void viewSeatMap()
     }
     while (1)
     {
-        printf(" Showtime(1 or 2) : ");
+        printf(" Showtime(1/2) : ");
         if(scanf("%d",&option2) == 1 && (option2 == 1 || option2 == 2))
         {
             break;
@@ -192,16 +193,36 @@ void bookTickets()
     movieList();
 
     int movie;
-    printf(" Select Movie : ");
-    scanf("%d",&movie);
-    printf("\n");
-
     int showtime;
     char rowChar;
     int columnChar;
-    printf(" Select Show Time : ");
-    scanf("%d",&showtime);
-    printf("\n");
+    while (1)
+    {
+        printf(" Select Movie(1/2/3) : ");
+        if(scanf("%d",&movie) == 1 && (movie >= 1 && movie <= 3))
+        {
+            break;
+        }
+        else
+        {
+            printf("\n\tInvalid movie selection !\n\n");
+            while (getchar() !='\n');
+        }
+    }
+    while (1)
+    {
+        printf(" Showtime(1/2) : ");
+        if(scanf("%d",&showtime) == 1 && (showtime == 1 || showtime == 2))
+        {
+            break;
+        }
+        else
+        {
+            printf("\n\tInvalid showtime selection !\n\n");
+            while (getchar() !='\n');
+        }
+    }
+
     int screen=(movie-1)*2+(showtime-1);
 
     printf("=============Seat Map=============\n");
@@ -327,7 +348,17 @@ void bookTickets()
         printf("\n\tInvalid choice! Please enter Y or N.\n\n");
     }
 
+void cancelBookings()
+{
+    system("cls");
+    int movie, showtime;
+    char rowChar;
+    int colNum;
+    char choice;
 
+    printf("=====================================================================\n");
+    printf("%40s\n","CANCEL BOOKING");
+    printf("=====================================================================\n\n");
 
 }
 
@@ -496,6 +527,13 @@ void showSeats(int screen)
             {
                 printf("X  ");
             }
+
+
+            grandTotalTickets+=ticketsSold;
+            grandTotalRevenue+=showtimeRevenue;
+
+
+            printf("%-20s %-15s %-15d Rs.%-17.2f\n",movies[i],showtimes[j],ticketsSold,showtimeRevenue);
         }
         printf("\n");
     }
