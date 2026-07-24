@@ -202,6 +202,8 @@ void viewSeatMap()
             printf("\n\tInvalid choice! Please enter Y or N.\n\n");
         }
     }
+    screen=(option1-1)*2+(option2-1);
+    showSeats(screen);
 }
 
 void bookTickets()
@@ -256,6 +258,12 @@ void bookTickets()
     printf(" \nEnter Customer Name : ");
     scanf("%49s",customer_name);
 
+
+    printf("\nTicket Type\n\n");
+
+    char customer_name[50];
+    printf(" \nEnter Customer Name : ");
+    scanf("%49s",customer_name);
 
     printf("\nTicket Type\n\n");
 
@@ -601,31 +609,55 @@ void searchBookings()
     printf("2.Search by Seat Number\n\n");
     while(1)
     {
-        printf("Enter Choice (1,2):");
-        scanf("%d",&choi);
+        char searchName[30];
+        int found=0;
 
-        if (choi==1)
+        printf(" Enter Customer Name to search : ");
+        scanf("%s",searchName);
+
+        char searchLower[30];
+        strcpy(searchLower,searchName);
+        for (int i=0; searchLower[i]; i++)
         {
-            system("cls");
-            printf("----------Search By Customer Name----------\n\n");
-            printf("Enter customer Name:");
-            scanf("%s",name);
-            break;
-            printf("---------------------------------------------------------");
-            searchbyname();
-            printf("---------------------------------------------------------");
+            searchLower[i]=tolower(searchLower[i]);
         }
-        else if (choi==2)
+        for (int screen=0; screen<6; screen++)
         {
-            system("cls");
-            printf("--------Search By Seat Number-----------\n\n");
-            searchbynumber();
-            break;
+            int movieIdx=screen/SHOWTIMES;
+            int showtimeIdx=screen%SHOWTIMES;
+
+            for (int r=0; r<ROWS; r++)
+            {
+                for (int c=0; c<COLUMNS; c++)
+                {
+                    if (seats[screen][r][c]==1)
+                    {
+                        char storedLower[30];
+                        strcpy(storedLower,customerName[screen][r][c]);
+                        for (int i=0; storedLower[i]; i++)
+                        {
+                            storedLower[i]=tolower(storedLower[i]);
+                        }
+
+                        if (strstr(storedLower,searchLower)!=NULL)
+                        {
+                            printf("%-20s %-12s %c%-7d %-15s %-10.2f\n",
+                                   movies[movieIdx],
+                                   showtimes[showtimeIdx],
+                                   'A'+r,
+                                   c+1,
+                                   customerName[screen][r][c],
+                                   ticketprice[screen][r][c]);
+                            found=1;
+                        }
+                    }
+                }
+            }
         }
-        else
+
+        if (!found)
         {
-            printf("\n      Invalid Input\n\n");
-            choi=0;
+            printf("\n\tNo bookings found matching: \"%s\"\n\n",searchName);
         }
     }
 }
@@ -731,18 +763,38 @@ void revenueReports()
             printf("\n\tInvalid choice! Please enter Y or N.\n\n");
         }
     }
-}
-void movieList()
+
+void showSeats(int screen)
 {
-    for(int i=0; i<MOVIES; i++)
+    printf("\n (.) = Available\n");
+    printf(" (X) = Booked\n\n");
+    printf(" Rows A-B : Regular (Rs.500)\n");
+    printf(" Rows C-D : Premium (Rs.750)\n");
+    printf(" Row  E   : VIP (Rs.1000)\n");
+    printf("\n\t");
+
+    for(int i=1; i<=10; i++)
     {
-        printf(" %d.%s\n",i+1,movies[i]);
-        for(int j=0; j<SHOWTIMES; j++)
+        printf("%2d ",i);
+    }
+    printf("\n");
+
+    for(int i=0; i<5; i++)
+    {
+        printf("%c  ",'A'+i);
+        printf("\t ");
+        for(int j=0; j<10; j++)
         {
-            printf("\t%d.%s\n",j+1,showtimes[j]);
+            if(seats[screen][i][j]==0)
+            {
+                printf(".  ");
+            }
+            else
+            {
+                printf("X  ");
+            }
         }
         printf("\n");
-
     }
 }
 
