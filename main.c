@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 #define ROWS 5
@@ -563,11 +564,12 @@ void bookTickets()
             {
                 system("cls");
                 printf("----------Search By Customer Name----------\n\n");
-                printf("Enter customer Name:");
-                scanf("%s",name);
+               /* printf("Enter customer Name:");
+                scanf("%s",name);*/
+                searchbyname();
                 break;
                 printf("---------------------------------------------------------");
-                searchbyname();
+
                 printf("---------------------------------------------------------");
             }
             else if (choi==2)
