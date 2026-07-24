@@ -516,7 +516,7 @@ void searchbyname()
 
                     if (strstr(storedLower,searchLower)!=NULL)
                     {
-                        printf("%-20s %-12s %c%-7d %-15s %-10.2f\n",
+                        printf("%\n-20s %-12s %c%-7d %-15s %-10.2f\n",
                                movies[movieIdx],
                                showtimes[showtimeIdx],
                                'A'+r,
@@ -608,11 +608,9 @@ void searchBookings()
         {
             system("cls");
             printf("----------Search By Customer Name----------\n\n");
-            printf("Enter customer Name:");
-            scanf("%s",name);
-            break;
-            printf("---------------------------------------------------------");
             searchbyname();
+            printf("---------------------------------------------------------");
+            break;
             printf("---------------------------------------------------------");
         }
         else if (choi==2)
